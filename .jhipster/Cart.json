@@ -1,0 +1,22 @@
+{
+  "changelogDate": "20231005162424",
+  "fields": [
+    {
+      "fieldName": "userID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "productID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Cart",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}
