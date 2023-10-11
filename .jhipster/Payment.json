@@ -1,0 +1,22 @@
+{
+  "changelogDate": "20231010162123",
+  "fields": [
+    {
+      "fieldName": "userID",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Payment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

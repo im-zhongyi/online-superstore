@@ -51,8 +51,8 @@ spring:
   mail:
     host: localhost
     port: 25
-    username:
-    password:
+    username: root
+    password: root123
   thymeleaf:
     cache: true
 
