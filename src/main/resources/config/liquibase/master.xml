@@ -11,10 +11,10 @@
     <property name="datetimeType" value="datetime(6)" dbms="mysql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231005115955_added_entity_Cart.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231005133537_added_entity_ProductListing.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231005160908_added_entity_Cart.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20231005161215_added_entity_ProductListing.xml" relativeToChangelogFile="false"/>
+<!--    <include file="config/liquibase/changelog/20231005162424_added_entity_Cart.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231005133537_added_entity_ProductListing.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231005160908_added_entity_Cart.xml" relativeToChangelogFile="false"/>-->
+<!--    <include file="config/liquibase/changelog/20231005161215_added_entity_ProductListing.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20231005162158_added_entity_ProductListing.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231005162424_added_entity_Cart.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20231010162123_added_entity_Payment.xml" relativeToChangelogFile="false"/>
