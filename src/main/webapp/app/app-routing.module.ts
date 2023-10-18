@@ -12,7 +12,6 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
   imports: [
     RouterModule.forRoot(
       [
-        
         {
           path: 'admin',
           data: {

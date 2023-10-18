@@ -10,10 +10,6 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span>ID</span></dt>
-        <dd>
-          <span>{{ productListing.id }}</span>
-        </dd>
         <dt><span>Product Name</span></dt>
         <dd>
           <span>{{ productListing.productName }}</span>
@@ -33,7 +29,7 @@
       </button>
 
       <button type="button" [routerLink]="['/product-listing', productListing.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        <span>Add to cart</span>
       </button>
     </div>
   </div>

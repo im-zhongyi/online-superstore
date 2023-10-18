@@ -5,49 +5,82 @@
 <div class="alert alert-warning" id="no-result" *ngIf="productListings?.length === 0">
   <span>No Product Listings found</span>
 </div>
-<div class="listing-section" *ngFor="let productListing of productListings; trackBy: trackId" data-cy="entityTable">
-  <div class="product">
-    <div class="image-box">
-      <div class="images" id="image-1"></div>
-    </div>
+<!--<div class="listing-section" *ngFor="let productListing of productListings; index as i" data-cy="entityTable">-->
+<!--  <div class="product">-->
+<!--    <div class="image-box">-->
+<!--      <div class="images" id="image-{{i}}"></div>-->
+<!--    </div>-->
+<!--    <div class="text-box">-->
+<!--      <h2 class="item">{{ productListing.productName }}</h2>-->
+<!--      <h3 class="price">{{ productListing.price }}</h3>-->
+<!--      <p>{{i}}</p>-->
+<!--      <label for="item-1-quantity">Left: {{ productListing.quantity }}</label>-->
+<!--      <button type="button" name="item-1-button" id="item-1-button">Add to Cart</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<section class="results">
+<div class="listing-section" *ngFor="let productListing of productListings; index as i" data-cy="entityTable">
+<section class="listing zoom" >
+  <a routerLink="/{{productListing.id}}/view">
+    <img class="listing-photo" id="image-1" alt="Photo of {{productListing.productName}}">
     <div class="text-box">
-      <h2 class="item">{{ productListing.productName }}</h2>
-      <h3 class="price">{{ productListing.price }}</h3>
-      <label for="item-1-quantity">Left: {{ productListing.quantity }}</label>
+      <h3 class="listing-heading">{{ productListing.productName }}</h3>
+      <label class="listing-location" for="item-{{i}}-quantity">Left: {{ productListing.quantity }}</label>
+      <label class="listing-location">S$ {{ productListing.price }}</label>
       <button type="button" name="item-1-button" id="item-1-button">Add to Cart</button>
     </div>
-  </div>
+  </a>
+</section>
 
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      position: relative;
-      box-sizing: border-box;
-    }
+<style>
+  .results {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 350px));
+    margin-top: 50px;
+    justify-content: center;
+    padding:20px;
+  }
+  .listing {
+    background: #e4e5e6;
+    border-radius: 30px;
+    border-width: 10px;
+    border-color: black;
 
-    .listing-section,
-    .cart-section {
-      width: 100%;
-      float: left;
-      padding: 1%;
-      border-bottom: 0.01em solid #dddbdb;
-    }
+  }
+  .zoom:hover {
+    transform: scale(1.08); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transition:400ms;
+  }
 
-    .product {
-      float: left;
-      width: 23%;
-      border-radius: 2%;
-      margin: 1%;
-    }
+  .zoom:not(:hover){
+    transform: scale(1);
+  }
+  .listing-heading {
+    color: var(--primary-color);
+    padding: 10px 20px 0 20px;
+    overflow-y:hidden;
+    height:1.5em;
+  }
+  .listing-photo {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 30px 30px 0 0;
+  }
+  .listing-location {
+    padding: 0px 20px 10px 20px;
+  }
 
-    .product:hover {
-      box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.4);
-      -webkit-box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.4);
-      -moz-box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.4);
-    }
 
-    .image-box {
+  section.listing a {
+    /* padding-left: 20px; */
+    text-decoration: none;
+    color: var(--primary-color);
+  }
+
+      .image-box {
       width: 100%;
       overflow: hidden;
       border-radius: 2% 2% 0 0;
@@ -58,21 +91,13 @@
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      border-radius: 2% 2% 0 0;
       transition: all 1s ease;
       -moz-transition: all 1s ease;
       -ms-transition: all 1s ease;
       -webkit-transition: all 1s ease;
       -o-transition: all 1s ease;
     }
-
-    .images:hover {
-      transform: scale(1.2);
-      overflow: hidden;
-      border-radius: 2%;
-    }
-
-    /* IMAGES */
+  /* IMAGES */
     #image-1 {
       background-image: url('https://sc01.alicdn.com/kf/UT8.CaXX2NXXXagOFbXC/fresh-navel-oranges.jpg');
     }
@@ -112,230 +137,287 @@
     #image-10 {
       background-image: url('https://www.parhlo.com/wp-content/uploads/2016/04/Valencia_market_-_lemons-1940x1454.jpg');
     }
+</style>
+<!--  <style>-->
+<!--    * {-->
+<!--      padding: 0;-->
+<!--      margin: 0;-->
+<!--      position: relative;-->
+<!--      box-sizing: border-box;-->
+<!--    }-->
 
-    .text-box {
-      width: 100%;
-      float: left;
-      border: 0.01em solid #dddbdb;
-      border-radius: 0 0 2% 2%;
-      padding: 1em;
-    }
+<!--    .listing-section,-->
+<!--    .cart-section {-->
+<!--      width: 100%;-->
+<!--      float: left;-->
+<!--      padding: 1%;-->
+<!--      border-bottom: 0.01em solid #dddbdb;-->
+<!--    }-->
 
-    h2,
-    h3 {
-      float: left;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      font-size: 1em;
-      text-transform: uppercase;
-      margin: 0.2em auto;
-    }
+<!--    .product {-->
+<!--      float: left;-->
+<!--      width: 23%;-->
+<!--      border-radius: 2%;-->
+<!--      margin: 1%;-->
+<!--    }-->
 
-    .item,
-    .price {
-      clear: left;
-      width: 100%;
-      text-align: center;
-    }
+<!--    .product:hover {-->
+<!--      box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.4);-->
+<!--      -webkit-box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.4);-->
+<!--      -moz-box-shadow: 1.5px 1.5px 2.5px 3px rgba(0, 0, 0, 0.4);-->
+<!--    }-->
 
-    .price {
-      color: Grey;
-    }
+<!--    .image-box {-->
+<!--      width: 100%;-->
+<!--      overflow: hidden;-->
+<!--      border-radius: 2% 2% 0 0;-->
+<!--    }-->
 
-    .description,
-    label,
-    button,
-    input {
-      float: left;
-      clear: left;
-      width: 100%;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      font-size: 1em;
-      text-align: center;
-      margin: 0.2em auto;
-    }
+<!--    .images {-->
+<!--      height: 15em;-->
+<!--      background-size: cover;-->
+<!--      background-position: center center;-->
+<!--      background-repeat: no-repeat;-->
+<!--      border-radius: 2% 2% 0 0;-->
+<!--      transition: all 1s ease;-->
+<!--      -moz-transition: all 1s ease;-->
+<!--      -ms-transition: all 1s ease;-->
+<!--      -webkit-transition: all 1s ease;-->
+<!--      -o-transition: all 1s ease;-->
+<!--    }-->
 
-    input:focus {
-      outline-color: #fdf;
-    }
+<!--    .images:hover {-->
+<!--      transform: scale(1.2);-->
+<!--      overflow: hidden;-->
+<!--      border-radius: 2%;-->
+<!--    }-->
 
-    label {
-      width: 60%;
-    }
 
-    .text-box input {
-      width: 15%;
-      clear: none;
-    }
 
-    .text-box button {
-      margin-top: 1em;
-    }
+<!--    .text-box {-->
+<!--      width: 100%;-->
+<!--      float: left;-->
+<!--      border: 0.01em solid #dddbdb;-->
+<!--      border-radius: 0 0 2% 2%;-->
+<!--      padding: 1em;-->
+<!--    }-->
 
-    button {
-      padding: 2%;
-      background-color: #dfd;
-      border: none;
-      border-radius: 2%;
-    }
+<!--    h2,-->
+<!--    h3 {-->
+<!--      float: left;-->
+<!--      font-family: 'Roboto', sans-serif;-->
+<!--      font-weight: 400;-->
+<!--      font-size: 1em;-->
+<!--      text-transform: uppercase;-->
+<!--      margin: 0.2em auto;-->
+<!--    }-->
 
-    button:hover {
-      bottom: 0.1em;
-    }
+<!--    .item,-->
+<!--    .price {-->
+<!--      clear: left;-->
+<!--      width: 100%;-->
+<!--      text-align: center;-->
+<!--    }-->
 
-    button:focus {
-      outline: 0;
-    }
+<!--    .price {-->
+<!--      color: Grey;-->
+<!--    }-->
 
-    button:active {
-      bottom: 0;
-      background-color: #fdf;
-    }
+<!--    .description,-->
+<!--    label,-->
+<!--    button,-->
+<!--    input {-->
+<!--      float: left;-->
+<!--      clear: left;-->
+<!--      width: 100%;-->
+<!--      font-family: 'Roboto', sans-serif;-->
+<!--      font-weight: 300;-->
+<!--      font-size: 1em;-->
+<!--      text-align: center;-->
+<!--      margin: 0.2em auto;-->
+<!--    }-->
 
-    .table-heading,
-    .table-content {
-      width: 75%;
-      margin: 1% 12.25%;
-      float: left;
-      background-color: #dfd;
-    }
+<!--    input:focus {-->
+<!--      outline-color: #fdf;-->
+<!--    }-->
 
-    .table-heading h2 {
-      padding: 1%;
-      margin: 0;
-      text-align: center;
-    }
+<!--    label {-->
+<!--      width: 60%;-->
+<!--    }-->
 
-    .cart-product {
-      width: 50%;
-      float: left;
-    }
+<!--    .text-box input {-->
+<!--      width: 15%;-->
+<!--      clear: none;-->
+<!--    }-->
 
-    .cart-price {
-      width: 15%;
-      float: left;
-    }
+<!--    .text-box button {-->
+<!--      margin-top: 1em;-->
+<!--    }-->
 
-    .cart-quantity {
-      width: 10%;
-      float: left;
-    }
+<!--    button {-->
+<!--      padding: 2%;-->
+<!--      background-color: #dfd;-->
+<!--      border: none;-->
+<!--      border-radius: 2%;-->
+<!--    }-->
 
-    .cart-total {
-      width: 25%;
-      float: left;
-    }
+<!--    button:hover {-->
+<!--      bottom: 0.1em;-->
+<!--    }-->
 
-    .cart-image-box {
-      width: 20%;
-      overflow: hidden;
-      border-radius: 2%;
-      float: left;
-      margin: 1%;
-    }
+<!--    button:focus {-->
+<!--      outline: 0;-->
+<!--    }-->
 
-    .cart-images {
-      height: 7em;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
+<!--    button:active {-->
+<!--      bottom: 0;-->
+<!--      background-color: #fdf;-->
+<!--    }-->
 
-    .cart-item {
-      width: 20%;
-      float: left;
-      margin: 3.2em 1%;
-      text-align: center;
-    }
-    .cart-description {
-      width: 53%;
-      float: left;
-      margin: 3.2em 1%;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      font-size: 1em;
-      text-align: center;
-    }
+<!--    .table-heading,-->
+<!--    .table-content {-->
+<!--      width: 75%;-->
+<!--      margin: 1% 12.25%;-->
+<!--      float: left;-->
+<!--      background-color: #dfd;-->
+<!--    }-->
 
-    .cart-price h3,
-    .cart-total h3 {
-      margin: 3.2em 5% 3.2em 20%;
-      width: 60%;
-    }
+<!--    .table-heading h2 {-->
+<!--      padding: 1%;-->
+<!--      margin: 0;-->
+<!--      text-align: center;-->
+<!--    }-->
 
-    .cart-quantity input {
-      margin: 3.2em 1%;
-      border: none;
-    }
+<!--    .cart-product {-->
+<!--      width: 50%;-->
+<!--      float: left;-->
+<!--    }-->
 
-    .remove {
-      width: 10%;
-      margin: 1px;
-      float: right;
-      clear: right;
-    }
+<!--    .cart-price {-->
+<!--      width: 15%;-->
+<!--      float: left;-->
+<!--    }-->
 
-    .coupon {
-      width: 20%;
-      background-color: #dfd;
-      margin: 1% 1% 1% 12.25%;
-      float: left;
-      height: 6em;
-    }
+<!--    .cart-quantity {-->
+<!--      width: 10%;-->
+<!--      float: left;-->
+<!--    }-->
 
-    .coupon input {
-      width: 60%;
-      border: none;
-      margin: 12.75% 5%;
-      padding: 1%;
-    }
+<!--    .cart-total {-->
+<!--      width: 25%;-->
+<!--      float: left;-->
+<!--    }-->
 
-    .coupon button {
-      width: 25%;
-      float: left;
-      clear: right;
-      margin: 12% 5% 12% 0;
-    }
+<!--    .cart-image-box {-->
+<!--      width: 20%;-->
+<!--      overflow: hidden;-->
+<!--      border-radius: 2%;-->
+<!--      float: left;-->
+<!--      margin: 1%;-->
+<!--    }-->
 
-    .keep-shopping {
-      width: 15%;
-      height: 6em;
-      float: left;
-      margin: 1% auto;
-      padding: 1%;
-      background-color: #dfd;
-    }
+<!--    .cart-images {-->
+<!--      height: 7em;-->
+<!--      background-size: cover;-->
+<!--      background-position: center center;-->
+<!--      background-repeat: no-repeat;-->
+<!--    }-->
 
-    .keep-shopping button {
-      text-transform: uppercase;
-      margin: 12% auto;
-    }
+<!--    .cart-item {-->
+<!--      width: 20%;-->
+<!--      float: left;-->
+<!--      margin: 3.2em 1%;-->
+<!--      text-align: center;-->
+<!--    }-->
+<!--    .cart-description {-->
+<!--      width: 53%;-->
+<!--      float: left;-->
+<!--      margin: 3.2em 1%;-->
+<!--      font-family: 'Roboto', sans-serif;-->
+<!--      font-weight: 300;-->
+<!--      font-size: 1em;-->
+<!--      text-align: center;-->
+<!--    }-->
 
-    .checkout {
-      width: 37.25%;
-      margin: 1% 12.75% 1% 1%;
-      float: right;
-      background-color: #dfd;
-      height: 6em;
-    }
+<!--    .cart-price h3,-->
+<!--    .cart-total h3 {-->
+<!--      margin: 3.2em 5% 3.2em 20%;-->
+<!--      width: 60%;-->
+<!--    }-->
 
-    .checkout button {
-      width: 30%;
-      clear: none;
-      margin: 5.4% 0 5.4% 5.5%;
-      text-transform: uppercase;
-    }
+<!--    .cart-quantity input {-->
+<!--      margin: 3.2em 1%;-->
+<!--      border: none;-->
+<!--    }-->
 
-    .final-cart-total {
-      width: 15%;
-      float: right;
-      margin: 7%;
-      background-color: White;
-    }
+<!--    .remove {-->
+<!--      width: 10%;-->
+<!--      margin: 1px;-->
+<!--      float: right;-->
+<!--      clear: right;-->
+<!--    }-->
 
-    .final-cart-total h3 {
-      color: Black;
-    }
-  </style>
+<!--    .coupon {-->
+<!--      width: 20%;-->
+<!--      background-color: #dfd;-->
+<!--      margin: 1% 1% 1% 12.25%;-->
+<!--      float: left;-->
+<!--      height: 6em;-->
+<!--    }-->
+
+<!--    .coupon input {-->
+<!--      width: 60%;-->
+<!--      border: none;-->
+<!--      margin: 12.75% 5%;-->
+<!--      padding: 1%;-->
+<!--    }-->
+
+<!--    .coupon button {-->
+<!--      width: 25%;-->
+<!--      float: left;-->
+<!--      clear: right;-->
+<!--      margin: 12% 5% 12% 0;-->
+<!--    }-->
+
+<!--    .keep-shopping {-->
+<!--      width: 15%;-->
+<!--      height: 6em;-->
+<!--      float: left;-->
+<!--      margin: 1% auto;-->
+<!--      padding: 1%;-->
+<!--      background-color: #dfd;-->
+<!--    }-->
+
+<!--    .keep-shopping button {-->
+<!--      text-transform: uppercase;-->
+<!--      margin: 12% auto;-->
+<!--    }-->
+
+<!--    .checkout {-->
+<!--      width: 37.25%;-->
+<!--      margin: 1% 12.75% 1% 1%;-->
+<!--      float: right;-->
+<!--      background-color: #dfd;-->
+<!--      height: 6em;-->
+<!--    }-->
+
+<!--    .checkout button {-->
+<!--      width: 30%;-->
+<!--      clear: none;-->
+<!--      margin: 5.4% 0 5.4% 5.5%;-->
+<!--      text-transform: uppercase;-->
+<!--    }-->
+
+<!--    .final-cart-total {-->
+<!--      width: 15%;-->
+<!--      float: right;-->
+<!--      margin: 7%;-->
+<!--      background-color: White;-->
+<!--    }-->
+
+<!--    .final-cart-total h3 {-->
+<!--      color: Black;-->
+<!--    }-->
+<!--  </style>-->
 </div>
+</section>
