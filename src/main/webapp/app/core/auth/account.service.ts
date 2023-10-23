@@ -60,7 +60,6 @@ export class AccountService {
   isAuthenticated(): boolean {
     return this.userIdentity !== null;
   }
-
   getAuthenticationState(): Observable<Account | null> {
     return this.authenticationState.asObservable();
   }

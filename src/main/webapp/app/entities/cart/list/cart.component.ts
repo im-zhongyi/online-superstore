@@ -10,7 +10,7 @@ import { ITEMS_PER_PAGE, PAGE_HEADER, TOTAL_COUNT_RESPONSE_HEADER } from 'app/co
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
 import { EntityArrayResponseType, CartService } from '../service/cart.service';
 import { CartDeleteDialogComponent } from '../delete/cart-delete-dialog.component';
-
+import { ProductListingService } from '../../product-listing/service/product-listing.service';
 @Component({
   selector: 'jhi-cart',
   templateUrl: './cart.component.html',
@@ -18,7 +18,6 @@ import { CartDeleteDialogComponent } from '../delete/cart-delete-dialog.componen
 export class CartComponent implements OnInit {
   carts?: ICart[];
   isLoading = false;
-
   predicate = 'id';
   ascending = true;
 
@@ -28,6 +27,7 @@ export class CartComponent implements OnInit {
 
   constructor(
     protected cartService: CartService,
+    protected productListingService: ProductListingService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
     protected modalService: NgbModal
@@ -90,6 +90,7 @@ export class CartComponent implements OnInit {
     this.fillComponentAttributesFromResponseHeader(response.headers);
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.carts = dataFromBody;
+
   }
 
   protected fillComponentAttributesFromResponseBody(data: ICart[] | null): ICart[] {

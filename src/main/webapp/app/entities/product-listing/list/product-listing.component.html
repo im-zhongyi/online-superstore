@@ -2,7 +2,13 @@
 
 <jhi-alert></jhi-alert>
 
-<div class="alert alert-warning" id="no-result" *ngIf="productListings?.length === 0">
+<section class="search">
+  <form class="search-form">
+    <input class="search-input" type="text" placeholder="Filter by product name" #filter>
+    <button class="primary" type="button" (click)="searchProduct(filter.value)">Search</button>
+  </form>
+</section>
+<div class="alert alert-warning" id="no-result" *ngIf="filteredProductListings?.length === 0">
   <span>No Product Listings found</span>
 </div>
 <!--<div class="listing-section" *ngFor="let productListing of productListings; index as i" data-cy="entityTable">-->
@@ -19,20 +25,33 @@
 <!--    </div>-->
 <!--  </div>-->
 <section class="results">
-<div class="listing-section" *ngFor="let productListing of productListings; index as i" data-cy="entityTable">
+<div class="listing-section" *ngFor="let productListing of filteredProductListings; index as i" data-cy="entityTable">
 <section class="listing zoom" >
   <a routerLink="/{{productListing.id}}/view">
     <img class="listing-photo" id="image-1" alt="Photo of {{productListing.productName}}">
     <div class="text-box">
       <h3 class="listing-heading">{{ productListing.productName }}</h3>
-      <label class="listing-location" for="item-{{i}}-quantity">Left: {{ productListing.quantity }}</label>
+      <label class="listing-location" for="item-{{i}}-quantity">Stock: {{ productListing.quantity }}</label>
       <label class="listing-location">S$ {{ productListing.price }}</label>
-      <button type="button" name="item-1-button" id="item-1-button">Add to Cart</button>
     </div>
   </a>
 </section>
 
 <style>
+  .search{
+  /* margin-top: var(--header-hieght) !important; */
+
+  width:inherit;
+  padding-top: calc(var(--header-height) - 25px);
+
+  /* margin:auto; */
+
+}
+.search-form{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
   .results {
     display: grid;
     column-gap: 30px;

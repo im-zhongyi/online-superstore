@@ -17,6 +17,7 @@ import { ProductListingDeleteDialogComponent } from '../delete/product-listing-d
 })
 export class ProductListingComponent implements OnInit {
   productListings?: IProductListing[];
+  filteredProductListings?: IProductListing[];
   isLoading = false;
 
   predicate = 'id';
@@ -71,6 +72,17 @@ export class ProductListingComponent implements OnInit {
     this.handleNavigation(page, this.predicate, this.ascending);
   }
 
+  searchProduct(searchText:string):void{
+    if(!searchText){
+    //return original product list
+      this.filteredProductListings = this.productListings;
+    }
+    else{
+      this.filteredProductListings = this.productListings?.filter( product =>
+        product?.productName?.toLowerCase().includes(searchText.toLowerCase())
+      );
+    }
+  }
   protected loadFromBackendWithRouteInformations(): Observable<EntityArrayResponseType> {
     return combineLatest([this.activatedRoute.queryParamMap, this.activatedRoute.data]).pipe(
       tap(([params, data]) => this.fillComponentAttributeFromRoute(params, data)),
@@ -90,6 +102,7 @@ export class ProductListingComponent implements OnInit {
     this.fillComponentAttributesFromResponseHeader(response.headers);
     const dataFromBody = this.fillComponentAttributesFromResponseBody(response.body);
     this.productListings = dataFromBody;
+    this.filteredProductListings = this.productListings;
   }
 
   protected fillComponentAttributesFromResponseBody(data: IProductListing[] | null): IProductListing[] {
@@ -132,4 +145,5 @@ export class ProductListingComponent implements OnInit {
       return [predicate + ',' + ascendingQueryParam];
     }
   }
+
 }

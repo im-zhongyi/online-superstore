@@ -1,6 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="CartHeading">
-    <span>Carts</span>
+    <span>Cart</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
@@ -12,10 +12,10 @@
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-cart"
-        [routerLink]="['/cart/new']"
+        [routerLink]="['/payment']"
       >
-        <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Cart </span>
+        <fa-icon icon="dollar"></fa-icon>
+        <span> Checkout </span>
       </button>
     </div>
   </h2>
@@ -32,18 +32,6 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
-          <th scope="col" jhiSortBy="id">
-            <div class="d-flex">
-              <span>ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
-          <th scope="col" jhiSortBy="userID">
-            <div class="d-flex">
-              <span>User ID</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col" jhiSortBy="productID">
             <div class="d-flex">
               <span>Product ID</span>
@@ -61,19 +49,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let cart of carts; trackBy: trackId" data-cy="entityTable">
-          <td>
-            <a [routerLink]="['/cart', cart.id, 'view']">{{ cart.id }}</a>
-          </td>
-          <td>{{ cart.userID }}</td>
           <td>{{ cart.productID }}</td>
           <td>{{ cart.quantity }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['/cart', cart.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-                <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
-              </button>
-
               <button type="submit" [routerLink]="['/cart', cart.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>

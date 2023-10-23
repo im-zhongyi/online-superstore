@@ -34,7 +34,7 @@ export class ProductListingService {
     });
   }
 
-  find(id: number): Observable<EntityResponseType> {
+  find(id: number|null|undefined): Observable<EntityResponseType> {
     return this.http.get<IProductListing>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
