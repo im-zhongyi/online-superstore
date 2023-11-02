@@ -1,0 +1,129 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:089507597204:task-definition/onlinesuperstore-team8-superstore-team8-api-superstore-team8:1",
+    "containerDefinitions": [
+        {
+            "name": "superstore-team8",
+            "image": "089507597204.dkr.ecr.ap-southeast-1.amazonaws.com/onlinesuperstore-team8/superstore-team8@sha256:019b10b2bf0bb09f7a30661d480669e7f81defad8fb5554e9d2f8c9bdb5ad62f",
+            "cpu": 0,
+            "links": [],
+            "portMappings": [
+                {
+                    "name": "target",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "entryPoint": [],
+            "command": [],
+            "environment": [
+                {
+                    "name": "COPILOT_LB_DNS",
+                    "value": "online-Publi-ce9r4EBW6Ebo-1587792631.ap-southeast-1.elb.amazonaws.com"
+                },
+                {
+                    "name": "COPILOT_SERVICE_DISCOVERY_ENDPOINT",
+                    "value": "superstore-team8-api.onlinesuperstore-team8.local"
+                },
+                {
+                    "name": "COPILOT_APPLICATION_NAME",
+                    "value": "onlinesuperstore-team8"
+                },
+                {
+                    "name": "COPILOT_SERVICE_NAME",
+                    "value": "superstore-team8"
+                },
+                {
+                    "name": "COPILOT_ENVIRONMENT_NAME",
+                    "value": "superstore-team8-api"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [],
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "extraHosts": [],
+            "dockerSecurityOptions": [],
+            "dockerLabels": {},
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/copilot/onlinesuperstore-team8-superstore-team8-api-superstore-team8",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "copilot"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "onlinesuperstore-team8-superstore-team8-api-superstore-team8",
+    "taskRoleArn": "arn:aws:iam::089507597204:role/onlinesuperstore-team8-superstore-team8-ap-TaskRole-poLAAR2aQXCE",
+    "executionRoleArn": "arn:aws:iam::089507597204:role/onlinesuperstore-team8-superstore-tea-ExecutionRole-YgokcFBeA6Rw",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "registeredAt": "2023-10-24T11:39:56.250Z",
+    "registeredBy": "arn:aws:sts::089507597204:assumed-role/onlinesuperstore-team8-superstore-team8-api-CFNExecutionRole/AWSCloudFormation",
+    "tags": [
+        {
+            "key": "copilot-application",
+            "value": "onlinesuperstore-team8"
+        },
+        {
+            "key": "copilot-environment",
+            "value": "superstore-team8-api"
+        },
+        {
+            "key": "copilot-service",
+            "value": "superstore-team8"
+        }
+    ]
+}
