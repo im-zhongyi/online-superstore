@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: onlinesuperstore-team8/superstore-team8           # set this to your Amazon ECR repository name
   ECS_SERVICE: onlinesuperstore-team8-superstore-team8-api-superstore-team8-Service-BDzIudMTJdGD                 # set this to your Amazon ECS service name
   ECS_CLUSTER: onlinesuperstore-team8-superstore-team8-api-Cluster-Xv4IJkdc4qJ5                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .aws/onlinesuperstore-team8-superstore-team8-api-superstore-team8-revision1.json # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: .aws/task-definition.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: superstore-team8           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
